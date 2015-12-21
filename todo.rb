@@ -1,5 +1,6 @@
 require_relative 'config/application'
 require_relative 'app/models/task.rb'
+require 'faker'
 
 input = ARGV[1..-1]
 

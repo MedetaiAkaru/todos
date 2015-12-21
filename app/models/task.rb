@@ -16,9 +16,17 @@ class Task < ActiveRecord::Base
     self.create(text: task_name, completed: completestatus)
   end
  
-  def self.delete_this(id) #cannot use .delete as it is a pre-defined method
-    puts self.find(id).text + " has been deleted"
-    self.delete(id)
+  def self.delete_this(id)
+  	if self.exists?(id)
+	    puts self.find(id).text + " has been deleted"
+	    self.delete(id)
+	    self.where("id > ?",id).each do |x|
+	    	x.id = ((x.id)-1)
+	    	x.save
+	    end
+	  else
+	  	puts id.to_s + " does not exist!"
+	  end
   end
  
   def self.list_complete
