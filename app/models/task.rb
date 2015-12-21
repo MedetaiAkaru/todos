@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
 
   def self.list
   	self.all.each do |x|
+  		print " " + x.id.to_s + ". "
    		if x.completed == true then
    			print "[X] "
    		else
@@ -15,9 +16,10 @@ class Task < ActiveRecord::Base
     self.create(text: task_name, completed: completestatus)
   end
  
-  # def self.delete(id)
-  #   self.destroy(id)
-  # end
+  def self.delete_this(id) #cannot use .delete as it is a pre-defined method
+    puts self.find(id).text + " has been deleted"
+    self.delete(id)
+  end
  
   def self.list_complete
   	self.where(completed: true).each do |x|

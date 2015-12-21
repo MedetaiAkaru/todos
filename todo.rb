@@ -9,7 +9,7 @@ when "list"
 when "add"
 	Task.add(input.join(" "),false)
 when "delete"
-	Task.delete(ARGV[1].to_i)
+	Task.delete_this(ARGV[1].to_i)
 when "complete"
 	Task.complete(ARGV[1].to_i)
 when "list_complete"
