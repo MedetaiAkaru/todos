@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   end
  
   def self.add(task_name, completestatus)
-    self.create(text: task_name, completed: completestatus)
+    self.create(id: self.count+1, text: task_name, completed: completestatus)
   end
  
   def self.delete_this(id)
